@@ -10,7 +10,7 @@ pictures should be straight
 # notes  
 
 v01.py from 11/06/24, discussed on 11/07/24, for full-skirted plate with circular 96 wells <br/>
-see Atharva's summary in discussion for details and more
+see Atharva's summary in discussion for details and more<br/><br/>
 -needs RGB in 3 columns and reverse orders <br/>
 -add median per area (left/right/user-defined) <br/>
 -get date and add to txt file <br/>

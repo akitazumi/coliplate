@@ -10,11 +10,11 @@ pictures should be straight
 # notes  
 
 v01.py from 11/06/24, discussed on 11/07/24, for full-skirted plate with circular 96 wells <br/>
--needs RGB in 3 columns and reverse orders
--add median per area (left/right/user-defined)
--get date and add to txt file
--users-defined pick number
--take in layout from user somehow
--heat source variation warning "avoid edges"
--add camera instruction
--can it accommodate different plates square/circle wells 
+-needs RGB in 3 columns and reverse orders <br/>
+-add median per area (left/right/user-defined) <br/>
+-get date and add to txt file <br/>
+-users-defined pick number <br/>
+-take in layout from user somehow <br/>
+-heat source variation warning "avoid edges" <br/>
+-add camera instruction <br/>
+-can it accommodate different plates square/circle wells <br/>

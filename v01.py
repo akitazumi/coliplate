@@ -4,23 +4,7 @@ import random
 
 
 #import image, hopefully same size (cropped at the edge of plate)
-
-############
-import io
-import numpy as np
-import cv2
-import PIL.Image
-import PIL.ImageCms
-
-img = PIL.Image.open('pic1.jpg')
-img_profile = PIL.ImageCms.ImageCmsProfile(io.BytesIO(img.info.get('icc_profile')))
-rgb_profile = PIL.ImageCms.createProfile('sRGB')
-trans = PIL.ImageCms.buildTransform(img_profile, rgb_profile, 'RGB', 'RGB')
-image = PIL.ImageCms.applyTransform(img, trans)
-
-cv_img = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
-
-#############
+image = cv2.imread('pic1.jpg')
 image_path = 'pic1'
 #get dim
 height, width = image.shape[:2]
@@ -40,6 +24,8 @@ cv2.imwrite('pic1_cropped.jpg', cropped_image)
 print("cropped as 'pic1_cropped.jpg'. please check.")
 
 ###################
+
+
 
 #pull out the clean one and two output
 image = cv2.imread('pic1_cropped.jpg')
@@ -68,6 +54,9 @@ current_x, current_y = 0, 0
 #rgb2html
 def rgb_to_html_color(rgb):
     return '#{:02x}{:02x}{:02x}'.format(rgb[0], rgb[1], rgb[2])
+
+#BGR to RGB!!
+def bgr_to_rgb(bgr): return (bgr[2], bgr[1], bgr[0])
 
 #ave of 100
 def average_color(pixels):
@@ -107,7 +96,7 @@ for i in range(grid_rows):
         
         #color per pick
         try:
-            adjacent_colors = [well[pt[1], pt[0]] for pt in selected_points]
+            adjacent_colors = [bgr_to_rgb(well[pt[1], pt[0]]) for pt in selected_points]
         except IndexError:
             print(f"Skipping well at ({i}, {j}) due to indexing error.")
             continue
@@ -141,7 +130,7 @@ cv2.imwrite('pic1_picked.jpg', image_picked)
 
 #stdout
 for well, (color, html_color) in center_colors.items():
-    print(f'Well {well}: Center RGB color {color}, HTML color "{html_color}"')
+    print(f'{image_path}\t{well}\t{color}\t"{html_color}"\n')
 
 #tab ver for excel import
 with open('pic1_cols.txt', 'w') as f:

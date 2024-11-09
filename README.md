@@ -18,7 +18,7 @@ basename is pic1 and should output: <br/>
 needs more work as discussed in the meeting but uploading for a record and for sake of Friday ;) <br/>
 
 # ver1
-v01.py had extra PIL conversion that i thought i needed for RGB consistency between java and python, but based on the feedback that the values were consistent already, im removing the conversion. now it runs without errors. 
+v01.py had extra PIL conversion that i thought i needed for RGB consistency between java and python, but based on the feedback that the values were consistent already, im removing the conversion. now it runs without errors. <br/>
 v01.py from 11/06/24, discussed on 11/07/24, for full-skirted plate with circular 96 wells <br/>
 see Atharva's summary in discussion for details and more<br/><br/>
 -needs RGB in 3 columns and reverse orders <br/>

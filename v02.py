@@ -9,7 +9,7 @@ random.seed(123)
 
 
 #message
-print(f"fixed the RGB reverse order, output format is tab delim for RGB and takes in number of points to pick and filename from users\nrun me like $python v02.py pic1.jpg -points 500")
+print(f"im v2! fixed the RGB reverse order, output format is tab delim for RGB and takes in number of points to pick and filename from users\nrun me like $python v02.py pic1.jpg -points 500")
 
 #flags 
 parser = argparse.ArgumentParser(description="this will crop from clean picture, divide into 98 wells and extract colors") 

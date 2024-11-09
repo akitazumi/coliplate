@@ -154,7 +154,7 @@ for item in center_colors:
     print(f'{item[0]}\tpoints={num_points}\t{item[1]}\t{item[2]}\t{item[3]}\t{item[4]}\t"{item[5]}"')
 
 #tab ver for excel import
-with open('center_colors.txt', 'w') as f:
+with open(f'{base_name}_cols.txt', 'w') as f:
     for item in center_colors:
         f.write(f'{item[0]}\tpoints={num_points}\t{item[1]}\t{item[2]}\t{item[3]}\t{item[4]}\t"{item[5]}"\n')
 

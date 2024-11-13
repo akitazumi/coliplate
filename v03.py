@@ -39,6 +39,39 @@ cv2.imwrite('pic1_cropped.jpg', cropped_image)
 
 print("cropped as 'pic1_cropped.jpg'. please check.")
 
+##########
+
+
+#those edges that were removed when cropping
+top_region = image[:top_crop, :]
+bottom_region = image[height - bottom_crop:, :]
+left_region = image[:, :left_crop]
+right_region = image[:, width - right_crop:]
+
+#edges, grayscale
+top_gray = cv2.cvtColor(top_region, cv2.COLOR_BGR2GRAY)
+bottom_gray = cv2.cvtColor(bottom_region, cv2.COLOR_BGR2GRAY)
+left_gray = cv2.cvtColor(left_region, cv2.COLOR_BGR2GRAY)
+right_gray = cv2.cvtColor(right_region, cv2.COLOR_BGR2GRAY)
+
+#edges, ave
+top_lightness = np.mean(top_gray)
+bottom_lightness = np.mean(bottom_gray)
+left_lightness = np.mean(left_gray)
+right_lightness = np.mean(right_gray)
+
+# Print the results
+print(f'Top region lightness: {top_lightness}')
+print(f'Bottom region lightness: {bottom_lightness}')
+print(f'Left region lightness: {left_lightness}')
+print(f'Right region lightness: {right_lightness}')
+
+# Optional: Combine the lightness values for a single value representing all removed regions
+average_removed_lightness = np.mean([top_lightness, bottom_lightness, left_lightness, right_lightness])
+print(f'Average lightness of removed regions: {average_removed_lightness}')
+
+############
+
 #pull out the clean one and two output
 image = cv2.imread('pic1_cropped.jpg')
 
@@ -240,7 +273,13 @@ with open(f'{base_name}_cols.txt', 'w') as f:
 
 #just stats
 with open(f'{base_name}_stats.txt', 'w') as f:
-    f.write(f'{base_name}.jpg\tlightness\tall\t{average_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tlightness\tcenter.wells\t{average_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tlightness\ttop.edge\t{top_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tlightness\tbottom.edge\t{bottom_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tlightness\tleft.edge\t{left_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tlightness\tright.edge\t{right_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tlightness\tall.edge\t{average_removed_lightness:.2f}\n')
+    
     #ave, -2SD, 2SD
     def write_stats(stat_type, stats):
         f.write(f'{base_name}.jpg\tAverage.RGB\t{stat_type}\t{stats[0]:.0f}\t{stats[1]:.0f}\t{stats[2]:.0f}\t"{stats[3]}"\n')

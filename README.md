@@ -21,8 +21,7 @@ included ave and stdev, for all wells or just left half and right half<br/>
 individual well colors are in {basename}_cols.txt as previously<br/>
 and additional file {basename}_stats.txt has this 6 lines for lightness and 9 line for color stat output:<br/>
 <br/>
-|     | | | | |
-| --- | --- | --- | --- | --- |
+
 | pic5.jpg | points=500 | lightness | center.wells | 137.28 |
 | pic5.jpg | points=500 | lightness | top.edge | 156.86 |
 | pic5.jpg | points=500 | lightness | bottom.edge | 155.65 |

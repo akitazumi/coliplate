@@ -5,6 +5,10 @@ import argparse
 import os
 import statistics
 
+#versions
+print("cv2 version:", cv2.__version__)
+print("numpy version:", np.__version__)
+
 #seed
 random.seed(123)
 
@@ -60,13 +64,13 @@ bottom_lightness = np.mean(bottom_gray)
 left_lightness = np.mean(left_gray)
 right_lightness = np.mean(right_gray)
 
-#stdout lightness
+# Print the results
 print(f'Top region lightness: {top_lightness}')
 print(f'Bottom region lightness: {bottom_lightness}')
 print(f'Left region lightness: {left_lightness}')
 print(f'Right region lightness: {right_lightness}')
 
-#rough ave of edges, with duplicated corners
+# Optional: Combine the lightness values for a single value representing all removed regions
 average_removed_lightness = np.mean([top_lightness, bottom_lightness, left_lightness, right_lightness])
 print(f'Average lightness of removed regions: {average_removed_lightness}')
 
@@ -265,6 +269,7 @@ print(f'{base_name}.jpg\tAverage.RGB\tright\t{right_stats[0]:.0f}\t{right_stats[
 print(f'{base_name}.jpg\tStdev, -2SD\tright\t{right_stats[4]:.0f}\t{right_stats[6]:.0f}\t{right_stats[8]:.0f}\t"{right_stats[10]}"')
 print(f'{base_name}.jpg\tStdev, +2SD\tright\t{right_stats[5]:.0f}\t{right_stats[7]:.0f}\t{right_stats[9]:.0f}\t"{right_stats[11]}"')
 
+print(f"The resolution of the {base_name}.jpg is: {width}x{height} pixels")
 
 #per well
 with open(f'{base_name}_cols.txt', 'w') as f:
@@ -273,18 +278,18 @@ with open(f'{base_name}_cols.txt', 'w') as f:
 
 #just stats
 with open(f'{base_name}_stats.txt', 'w') as f:
-    f.write(f'{base_name}.jpg\tpoints={num_points}\tlightness\tcenter.wells\t{average_lightness:.2f}\n')
-    f.write(f'{base_name}.jpg\tpoints={num_points}\tlightness\ttop.edge\t{top_lightness:.2f}\n')
-    f.write(f'{base_name}.jpg\tpoints={num_points}\tlightness\tbottom.edge\t{bottom_lightness:.2f}\n')
-    f.write(f'{base_name}.jpg\tpoints={num_points}\tlightness\tleft.edge\t{left_lightness:.2f}\n')
-    f.write(f'{base_name}.jpg\tpoints={num_points}\tlightness\tright.edge\t{right_lightness:.2f}\n')
-    f.write(f'{base_name}.jpg\tpoints={num_points}\tlightness\tall.edge\t{average_removed_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tpixels={width}x{height}\tpoints={num_points}\tlightness\tcenter.wells\t{average_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tpixels={width}x{height}\tpoints={num_points}\tlightness\ttop.edge\t{top_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tpixels={width}x{height}\tpoints={num_points}\tlightness\tbottom.edge\t{bottom_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tpixels={width}x{height}\tpoints={num_points}\tlightness\tleft.edge\t{left_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tpixels={width}x{height}\tpoints={num_points}\tlightness\tright.edge\t{right_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tpixels={width}x{height}\tpoints={num_points}\tlightness\tall.edge\t{average_removed_lightness:.2f}\n')
     
     #ave, -2SD, 2SD
     def write_stats(stat_type, stats):
-        f.write(f'{base_name}.jpg\tpoints={num_points}\tAverage.RGB\t{stat_type}\t{stats[0]:.0f}\t{stats[1]:.0f}\t{stats[2]:.0f}\t"{stats[3]}"\n')
-        f.write(f'{base_name}.jpg\tpoints={num_points}\tStdev.RGB.-2SD\t{stat_type}\t{stats[4]:.0f}\t{stats[6]:.0f}\t{stats[8]:.0f}\t"{stats[10]}"\n')
-        f.write(f'{base_name}.jpg\tpoints={num_points}\tStdev.RGB.+2SD\t{stat_type}\t{stats[5]:.0f}\t{stats[7]:.0f}\t{stats[9]:.0f}\t"{stats[11]}"\n')
+        f.write(f'{base_name}.jpg\tpixels={width}x{height}\tpoints={num_points}\tAverage.RGB\t{stat_type}\t{stats[0]:.0f}\t{stats[1]:.0f}\t{stats[2]:.0f}\t"{stats[3]}"\n')
+        f.write(f'{base_name}.jpg\tpixels={width}x{height}\tpoints={num_points}\tStdev.RGB.-2SD\t{stat_type}\t{stats[4]:.0f}\t{stats[6]:.0f}\t{stats[8]:.0f}\t"{stats[10]}"\n')
+        f.write(f'{base_name}.jpg\tpixels={width}x{height}\tpoints={num_points}\tStdev.RGB.+2SD\t{stat_type}\t{stats[5]:.0f}\t{stats[7]:.0f}\t{stats[9]:.0f}\t"{stats[11]}"\n')
 
     #all
     write_stats('all', all_stats)

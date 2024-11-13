@@ -60,13 +60,13 @@ bottom_lightness = np.mean(bottom_gray)
 left_lightness = np.mean(left_gray)
 right_lightness = np.mean(right_gray)
 
-# Print the results
+#stdout lightness
 print(f'Top region lightness: {top_lightness}')
 print(f'Bottom region lightness: {bottom_lightness}')
 print(f'Left region lightness: {left_lightness}')
 print(f'Right region lightness: {right_lightness}')
 
-# Optional: Combine the lightness values for a single value representing all removed regions
+#rough ave of edges, with duplicated corners
 average_removed_lightness = np.mean([top_lightness, bottom_lightness, left_lightness, right_lightness])
 print(f'Average lightness of removed regions: {average_removed_lightness}')
 

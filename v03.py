@@ -240,7 +240,7 @@ with open(f'{base_name}_cols.txt', 'w') as f:
 
 #just stats
 with open(f'{base_name}_stats.txt', 'w') as f:
-    f.write(f'The lightness of the image is: {average_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tlightness\tall\t{average_lightness:.2f}\n')
     #ave, -2SD, 2SD
     def write_stats(stat_type, stats):
         f.write(f'{base_name}.jpg\tAverage.RGB\t{stat_type}\t{stats[0]:.0f}\t{stats[1]:.0f}\t{stats[2]:.0f}\t"{stats[3]}"\n')

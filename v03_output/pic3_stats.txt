@@ -1,10 +1,15 @@
-pic3.jpg	lightness	all	129.13
-pic3.jpg	Average.RGB	all	127	159	46	"#7f9f2e"
-pic3.jpg	Stdev, -2SD	all	93	135	21	"#5d8615"
-pic3.jpg	Stdev, +2SD	all	161	183	71	"#a0b746"
-pic3.jpg	Average.RGB	left	127	159	50	"#7f9f32"
-pic3.jpg	Stdev, -2SD	left	94	137	22	"#5e8916"
-pic3.jpg	Stdev, +2SD	left	160	181	78	"#9fb44d"
-pic3.jpg	Average.RGB	right	121	155	47	"#799b2f"
-pic3.jpg	Stdev, -2SD	right	87	129	23	"#578016"
-pic3.jpg	Stdev, +2SD	right	155	181	71	"#9ab547"
+pic3.jpg	pixels=236x161	points=500	lightness	center.wells	129.13
+pic3.jpg	pixels=236x161	points=500	lightness	top.edge	149.98
+pic3.jpg	pixels=236x161	points=500	lightness	bottom.edge	151.12
+pic3.jpg	pixels=236x161	points=500	lightness	left.edge	176.78
+pic3.jpg	pixels=236x161	points=500	lightness	right.edge	174.99
+pic3.jpg	pixels=236x161	points=500	lightness	all.edge	163.22
+pic3.jpg	pixels=236x161	points=500	Average.RGB	all	127	159	46	"#7f9f2e"
+pic3.jpg	pixels=236x161	points=500	Stdev.RGB.-2SD	all	93	135	21	"#5d8615"
+pic3.jpg	pixels=236x161	points=500	Stdev.RGB.+2SD	all	161	183	71	"#a0b746"
+pic3.jpg	pixels=236x161	points=500	Average.RGB	left	127	159	50	"#7f9f32"
+pic3.jpg	pixels=236x161	points=500	Stdev.RGB.-2SD	left	94	137	22	"#5e8916"
+pic3.jpg	pixels=236x161	points=500	Stdev.RGB.+2SD	left	160	181	78	"#9fb44d"
+pic3.jpg	pixels=236x161	points=500	Average.RGB	right	121	155	47	"#799b2f"
+pic3.jpg	pixels=236x161	points=500	Stdev.RGB.-2SD	right	87	129	23	"#578016"
+pic3.jpg	pixels=236x161	points=500	Stdev.RGB.+2SD	right	155	181	71	"#9ab547"

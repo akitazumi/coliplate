@@ -1,10 +1,15 @@
-pic6.jpg	lightness	all	130.87
-pic6.jpg	Average.RGB	all	137	163	43	"#89a32b"
-pic6.jpg	Stdev, -2SD	all	99	140	14	"#628c0d"
-pic6.jpg	Stdev, +2SD	all	175	186	72	"#afb948"
-pic6.jpg	Average.RGB	left	129	158	36	"#819e24"
-pic6.jpg	Stdev, -2SD	left	102	139	20	"#668a13"
-pic6.jpg	Stdev, +2SD	left	156	177	52	"#9bb134"
-pic6.jpg	Average.RGB	right	143	167	53	"#8fa735"
-pic6.jpg	Stdev, -2SD	right	100	143	15	"#638f0f"
-pic6.jpg	Stdev, +2SD	right	186	191	91	"#babe5a"
+pic6.jpg	pixels=722x488	points=500	lightness	center.wells	130.87
+pic6.jpg	pixels=722x488	points=500	lightness	top.edge	150.97
+pic6.jpg	pixels=722x488	points=500	lightness	bottom.edge	148.55
+pic6.jpg	pixels=722x488	points=500	lightness	left.edge	166.85
+pic6.jpg	pixels=722x488	points=500	lightness	right.edge	169.12
+pic6.jpg	pixels=722x488	points=500	lightness	all.edge	158.87
+pic6.jpg	pixels=722x488	points=500	Average.RGB	all	137	163	43	"#89a32b"
+pic6.jpg	pixels=722x488	points=500	Stdev.RGB.-2SD	all	99	140	14	"#628c0d"
+pic6.jpg	pixels=722x488	points=500	Stdev.RGB.+2SD	all	175	186	72	"#afb948"
+pic6.jpg	pixels=722x488	points=500	Average.RGB	left	129	158	36	"#819e24"
+pic6.jpg	pixels=722x488	points=500	Stdev.RGB.-2SD	left	102	139	20	"#668a13"
+pic6.jpg	pixels=722x488	points=500	Stdev.RGB.+2SD	left	156	177	52	"#9bb134"
+pic6.jpg	pixels=722x488	points=500	Average.RGB	right	143	167	53	"#8fa735"
+pic6.jpg	pixels=722x488	points=500	Stdev.RGB.-2SD	right	100	143	15	"#638f0f"
+pic6.jpg	pixels=722x488	points=500	Stdev.RGB.+2SD	right	186	191	91	"#babe5a"

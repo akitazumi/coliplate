@@ -18,17 +18,22 @@ currently testing with python 3.11.7<br/>
 # v03
 included ave and stdev, for all wells or just left half and right half<br/>
 individual well colors are in {basename}_cols.txt as previously<br/>
-and additional file {basename}_stats.txt has this 9 line output:<br/>
-pic5.jpg	Average.RGB	all	146	170	49	"#92aa31"<br/>
-pic5.jpg	Stdev, -2SD	all	99	143	6	"#638e06"<br/>
-pic5.jpg	Stdev, +2SD	all	193	197	92	"#c0c55b"<br/>
-pic5.jpg	Average.RGB	left	135	161	40	"#87a128"<br/>
-pic5.jpg	Stdev, -2SD	left	101	139	22	"#648b15"<br/>
-pic5.jpg	Stdev, +2SD	left	169	183	58	"#a9b63a"<br/>
-pic5.jpg	Average.RGB	right	155	175	56	"#9baf38"<br/>
-pic5.jpg	Stdev, -2SD	right	108	151	13	"#6b970c"<br/>
-pic5.jpg	Stdev, +2SD	right	202	199	99	"#cac663"<br/>
-
+and additional file {basename}_stats.txt has this 6 lines for lightness and 9 line for color stat output:<br/>
+pic5.jpg        points=500      lightness       center.wells    137.28<br/>
+pic5.jpg        points=500      lightness       top.edge        156.86<br/>
+pic5.jpg        points=500      lightness       bottom.edge     155.65<br/>
+pic5.jpg        points=500      lightness       left.edge       174.69<br/>
+pic5.jpg        points=500      lightness       right.edge      180.21<br/>
+pic5.jpg        points=500      lightness       all.edge        166.85<br/>
+pic5.jpg        points=500      Average.RGB     all     146     170     49      "#92aa31"<br/>
+pic5.jpg        points=500      Stdev.RGB.-2SD  all     99      143     6       "#638e06"<br/>
+pic5.jpg        points=500      Stdev.RGB.+2SD  all     193     197     92      "#c0c55b"<br/>
+pic5.jpg        points=500      Average.RGB     left    135     161     40      "#87a128"<br/>
+pic5.jpg        points=500      Stdev.RGB.-2SD  left    101     139     22      "#648b15"<br/>
+pic5.jpg        points=500      Stdev.RGB.+2SD  left    169     183     58      "#a9b63a"<br/>
+pic5.jpg        points=500      Average.RGB     right   155     175     56      "#9baf38"<br/>
+pic5.jpg        points=500      Stdev.RGB.-2SD  right   108     151     13      "#6b970c"<br/>
+pic5.jpg        points=500      Stdev.RGB.+2SD  right   202     199     99      "#cac663"<br/>
 
 # v02
 v02.py fixed the RGB reverse order, not BGR anymore, and RGB output format is tab delim. <br/>

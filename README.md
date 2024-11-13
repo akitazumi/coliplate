@@ -6,6 +6,9 @@ python for RGB detection from coliplates
 don't use iphone, use regular cameras
 pictures should be straight 
 
+# powerpoint records
+for screenshot and memo: https://ars-usda.box.com/s/ddqe6xd6qgn7imjhopgu2oqt07sfx85k<br/>
+
 # v03
 included ave and stdev, for all wells or just left half and right half<br/>
 individual well colors are in {basename}_cols.txt as previously<br/>

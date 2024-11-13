@@ -10,8 +10,8 @@ pictures should be straight
 for screenshot and memo: https://ars-usda.box.com/s/ddqe6xd6qgn7imjhopgu2oqt07sfx85k<br/>
 
 # python dependencies
-cv2, numpy, random, argparse, os, statistics
-current python 3.11.7
+cv2, numpy, random, argparse, os, statistics<br/>
+currently testing with python 3.11.7<br/>
 
 # v03
 included ave and stdev, for all wells or just left half and right half<br/>

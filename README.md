@@ -15,6 +15,12 @@ numpy version: 1.26.4<br/>
 and standard library modules: random, argparse, os, statistics<br/>
 currently testing with python 3.11.7<br/>
 
+# t
+|   |   |
+|---|---|
+|__Bold Key__| Value1 |
+| Normal Key | Value2 |
+
 # v03
 included ave and stdev, for all wells or just left half and right half<br/>
 individual well colors are in {basename}_cols.txt as previously<br/>

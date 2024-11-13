@@ -273,18 +273,18 @@ with open(f'{base_name}_cols.txt', 'w') as f:
 
 #just stats
 with open(f'{base_name}_stats.txt', 'w') as f:
-    f.write(f'{base_name}.jpg\tlightness\tcenter.wells\t{average_lightness:.2f}\n')
-    f.write(f'{base_name}.jpg\tlightness\ttop.edge\t{top_lightness:.2f}\n')
-    f.write(f'{base_name}.jpg\tlightness\tbottom.edge\t{bottom_lightness:.2f}\n')
-    f.write(f'{base_name}.jpg\tlightness\tleft.edge\t{left_lightness:.2f}\n')
-    f.write(f'{base_name}.jpg\tlightness\tright.edge\t{right_lightness:.2f}\n')
-    f.write(f'{base_name}.jpg\tlightness\tall.edge\t{average_removed_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tpoints={num_points}\tlightness\tcenter.wells\t{average_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tpoints={num_points}\tlightness\ttop.edge\t{top_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tpoints={num_points}\tlightness\tbottom.edge\t{bottom_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tpoints={num_points}\tlightness\tleft.edge\t{left_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tpoints={num_points}\tlightness\tright.edge\t{right_lightness:.2f}\n')
+    f.write(f'{base_name}.jpg\tpoints={num_points}\tlightness\tall.edge\t{average_removed_lightness:.2f}\n')
     
     #ave, -2SD, 2SD
     def write_stats(stat_type, stats):
-        f.write(f'{base_name}.jpg\tAverage.RGB\t{stat_type}\t{stats[0]:.0f}\t{stats[1]:.0f}\t{stats[2]:.0f}\t"{stats[3]}"\n')
-        f.write(f'{base_name}.jpg\tStdev, -2SD\t{stat_type}\t{stats[4]:.0f}\t{stats[6]:.0f}\t{stats[8]:.0f}\t"{stats[10]}"\n')
-        f.write(f'{base_name}.jpg\tStdev, +2SD\t{stat_type}\t{stats[5]:.0f}\t{stats[7]:.0f}\t{stats[9]:.0f}\t"{stats[11]}"\n')
+        f.write(f'{base_name}.jpg\tpoints={num_points}\tAverage.RGB\t{stat_type}\t{stats[0]:.0f}\t{stats[1]:.0f}\t{stats[2]:.0f}\t"{stats[3]}"\n')
+        f.write(f'{base_name}.jpg\tpoints={num_points}\tStdev.RGB.-2SD\t{stat_type}\t{stats[4]:.0f}\t{stats[6]:.0f}\t{stats[8]:.0f}\t"{stats[10]}"\n')
+        f.write(f'{base_name}.jpg\tpoints={num_points}\tStdev.RGB.+2SD\t{stat_type}\t{stats[5]:.0f}\t{stats[7]:.0f}\t{stats[9]:.0f}\t"{stats[11]}"\n')
 
     #all
     write_stats('all', all_stats)

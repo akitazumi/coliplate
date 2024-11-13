@@ -10,7 +10,9 @@ pictures should be straight
 for screenshot and memo: https://ars-usda.box.com/s/ddqe6xd6qgn7imjhopgu2oqt07sfx85k<br/>
 
 # python dependencies
-cv2, numpy, random, argparse, os, statistics<br/>
+cv2 version: 4.10.0<br/>
+numpy version: 1.26.4<br/>
+and standard library modules: random, argparse, os, statistics<br/>
 currently testing with python 3.11.7<br/>
 
 # v03

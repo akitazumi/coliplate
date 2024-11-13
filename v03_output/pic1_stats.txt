@@ -1,6 +1,7 @@
-pic1.jpg	Average.RGB	all	146	175	51	"#92af33"
-pic1.jpg	Stdev, -2SD	all	115	153	27	"#72991b"
-pic1.jpg	Stdev, +2SD	all	177	197	75	"#b1c44a"
+pic1.jpg	lightness	all	144.30
+pic1.jpg	Average.RGB	all	147	175	51	"#93af33"
+pic1.jpg	Stdev, -2SD	all	116	153	27	"#73991b"
+pic1.jpg	Stdev, +2SD	all	178	197	75	"#b2c44a"
 pic1.jpg	Average.RGB	left	150	175	51	"#96af33"
 pic1.jpg	Stdev, -2SD	left	122	157	26	"#799c19"
 pic1.jpg	Stdev, +2SD	left	178	193	76	"#b2c14c"

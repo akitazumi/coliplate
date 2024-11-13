@@ -1,3 +1,4 @@
+pic3.jpg	lightness	all	129.13
 pic3.jpg	Average.RGB	all	127	159	46	"#7f9f2e"
 pic3.jpg	Stdev, -2SD	all	93	135	21	"#5d8615"
 pic3.jpg	Stdev, +2SD	all	161	183	71	"#a0b746"

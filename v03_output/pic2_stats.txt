@@ -1,3 +1,4 @@
+pic2.jpg	lightness	all	137.66
 pic2.jpg	Average.RGB	all	141	168	46	"#8da82e"
 pic2.jpg	Stdev, -2SD	all	102	142	30	"#668e1e"
 pic2.jpg	Stdev, +2SD	all	180	194	62	"#b3c13d"

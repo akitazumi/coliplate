@@ -1,3 +1,4 @@
+pic6.jpg	lightness	all	130.87
 pic6.jpg	Average.RGB	all	137	163	43	"#89a32b"
 pic6.jpg	Stdev, -2SD	all	99	140	14	"#628c0d"
 pic6.jpg	Stdev, +2SD	all	175	186	72	"#afb948"

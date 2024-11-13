@@ -1,3 +1,4 @@
+pic5.jpg	lightness	all	137.28
 pic5.jpg	Average.RGB	all	146	170	49	"#92aa31"
 pic5.jpg	Stdev, -2SD	all	99	143	6	"#638e06"
 pic5.jpg	Stdev, +2SD	all	193	197	92	"#c0c55b"

@@ -9,6 +9,10 @@ pictures should be straight
 # powerpoint records
 for screenshot and memo: https://ars-usda.box.com/s/ddqe6xd6qgn7imjhopgu2oqt07sfx85k<br/>
 
+# python dependencies
+cv2, numpy, random, argparse, os, statistics
+current python 3.11.7
+
 # v03
 included ave and stdev, for all wells or just left half and right half<br/>
 individual well colors are in {basename}_cols.txt as previously<br/>

@@ -1,0 +1,7 @@
+The python software is to be built from this old ImageJ script I developed. Here is a brief list of instructions for installation/usage:
+- Download the software from the https://imagej.net/ij/download.html site
+- This plugin is a script written in ImageJ macro language (.ijm file, .txt format however)
+- After opening ImageJ, install this plugin by doing Plugins > Install  and choosing Plate_Reader_Updated_9_17_24_by_Atharva_Nigudkar from the appropriate directory
+- The plugin should now appear listed under the Plugins menu, and is ready to use
+- Launch by clicking Plugins > Plate_Reader_Updated_9_17_24_by_Atharva_Nigudkar 
+- Directions on usage are described within the plugin itself, both the file and the plugin window

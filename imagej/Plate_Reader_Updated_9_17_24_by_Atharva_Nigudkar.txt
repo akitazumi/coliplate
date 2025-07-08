@@ -1,0 +1,344 @@
+//////////////////////////////////////////////////////////////////////////////////////////
+// Plugin "Plate_Reader_Updated_9_17_24_by_Atharva Nigudkar"
+// ALL ORIGINAL CREDIT GOES TO JOSE MARIA DELFINO; CODE MODIFIED FROM HIS BASE, REWRITTEN BY ATHARVA NIGUDKAR BUT CREDIT STILL NECESSARY TO GIVE
+// Updated version of macro that was originally created by Jose Maria Delfino, measuring RGB values of a multi-well // plate image of up to 96 wells.
+// ReadPlate2.1 version, incorporating an improved blank correction algorithm, 02-16-2018; 
+// ReadPlate2 version, incorporating blank correction, 04-15-2016; 
+// Original ReadPlate version, 12-16-2015
+// *Atharva Nigudkar updated version, 9/17/24
+//
+// ReadPlate2.1 was tested with ImageJ 1.51s, Java 1.8.0_101 (64-bit) in a MacBook Pro 
+// (Retina, 13-inch, Early 2013), running OSX El Capitan, version 10.11
+// *Updated plugin tested with ImageJ 1.54g, Java 1.8.0_345 (64-bit) on a OptiPlex 3070 PC, running Windows 11, version 23H2
+//
+// Jose Maria Delfino
+// Department of Biological Chemistry and Institute of Biochemistry and Biophysics (IQUIFIB)
+// School of Pharmacy & Biochemistry
+// University of Buenos Aires and CONICET
+// Junin 956, C1113AAD Buenos Aires, Argentina
+// E-mail: delfino@qb.ffyb.uba.ar
+// Phone: 54 11 4962 5506, 54 11 4964 8289/8290/8291, extension 116
+//
+// Atharva Nigudkar
+// USDA ARS Albany/UC Berkeley
+// Contact at: anigudkar@berkeley.edu or Atharva.Nigudkar@usda.gov
+// Phone: 408-717-0130
+//
+//////////////////////////////////////////////////////////////////////////////////////////
+//
+// INSTALLATION:
+// ImageJ is a high-quality public domain software very useful for image processing.
+// Download the software from the imagej.nih.gov site. 
+// You should have ImageJ installed in your machine in the first place.
+// This plugin is a script written in ImageJ macro language (.ijm file).
+// After opening ImageJ, install this plugin by doing Plugins > Install  and choosing 
+// ReadPlate from the appropriate directory.
+// The plugin ReadPlate should now appear listed under the Plugins menu, and is ready to 
+// be launched by clicking Plugins > Plate_Reader_Updated_9_17_24_by_Atharva_Nigudkar. 
+//
+//////////////////////////////////////////////////////////////////////////////////////////
+//
+// Example image: http://imagej.nih.gov/ij/macros/images/plate.jpg
+//
+//////////////////////////////////////////////////////////////////////////////////////////
+//
+// Relevant literature reference: 
+// Broadly Available Imaging Devices Enable High Quality Low-Cost Photometry
+// Dionysios C. Christodouleas, Alex Nemiroski, Ashok A. Kumar & George M. Whitesides 
+// Anal Chem. 2015, 87:9170-8.
+//
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+// Clearing table with results and removing overlay
+
+run("Clear Results");
+
+run("Remove Overlay");
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+message =
+
+"General Setup/Instructions: [OPEN WINDOW/SCREEN ALL THE WAY TO SEE EVERYTHING BELOW] \n"
++" \n"
++"1.- Ensure your photograph of the well plate has been taken within the black box, \n"
++" with a digital camera (NOT PHONE), and at a consistent time. You want your image to be \n"
++" in .jpg file format and have it centered in such a way that the edges of the well plate \n"
++" lay as parallel as possible to image borders. Take a color photograph of the plate \n"
++" centered in DE/67 (see plugin presentation).	\n"
++" \n"
++"2.- Prior to actually clicking OK and doing readings, go to File -> Open -> \n"
++" and select your image of choice using ImageJ itself. 	\n"
++" \n"
++"3.- Before being able to conduct any readings, get the following measurements written \n"
++" down so that you can plug them back into the function: how many columns, how many rows, \n"
++" the center of the first well (top left) named A1 in both x and y coordinates, the \n"
++" center of the last well (bottom right) named H12 in both x and y coordinates, and \n"
++" finally the general diameter of each circle of measurement you want to do. 	\n"
++" \n"
++"4a.- After you have these basic measurements down, go ahead and select Plugins -> \n"
++" Plate_Reader_Updated_9_17_24_by_Atharva_Nigudkar				\n" 
++" \n"
++"4b.- You will be prompted to select a color channel, as we want RGB values, \n"
++" you will need to get values for all three of Red, Green, and Blue \n"
++" (Gray is also there, was coded by Jose Maria Delfino and remains part of the software) 			\n"
++" \n"
++"4c.- Fill in the aforementioned measurements in the Grid Parameters popup. \n"
++" The diameter of your circle of measurement does not need to be massive, just clearly \n"
++" well sized to cover the center of the given well and measure most of the main color \n"
++" there. 
++" (As stated directly by Jose Maria Delfino: The final grid should show \n"
++" big circles well centered on the wells and four small circles \n" 
++" surrounding each well. The latter serve to correct for differences in local \n"
++" light intensity) \n"
++" \n"
++"4d.- Ensure that the grid matches the image and everything lines up well. \n"
++" If so, continue with actual measurements. Results will be returned in format \n"
++" ready for Excel analysis. Watch tutorial video for further clarification on \n"
++" parameters returned by the plugin: https://www.youtube.com/watch?v=lzqvde-f2B4 \n" 
++"												\n"
++"	Modified by Atharva Nigudkar on 9/17/24, named Plate_Reader_Updated_9_17_24_by_Atharva_Nigudkar								\n"
++" \n"
++"	ALL ORIGINAL CREDIT GOES TO: Jose Maria Delfino, PhD								\n"
++"	Department of Biological Chemistry and Institute of Biochemistry and Biophysics (IQUIFIB),		\n"
++"	School of Pharmacy and Biochemistry, University of Buenos Aires and CONICET,			\n"
++"	Junin 956, C1113AAD Buenos Aires, Argentina.						\n"
++"	CONTACT INFORMATION FOR JOSE MARIA DELFINO: delfino@qb.ffyb.uba.ar \n"
++" \n"	
++"	In case of issues by USDA Albany ARS members, please contact Atharva Nigudkar \n"
++" at anigudkar@berkeley.edu or Atharva.Nigudkar@usda.gov for an in-depth \n"
++" walkthrough/tutorial of the plugin. Modifications made have been slight/all below \n"
++" Base credit to Jose Maria Delfino, and this modified version of ReadPlate \n"
++" will not be used for commercial or otherwise profitable purposes. \n"						
+showMessage ("Readplate", message);
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Opening a color photograph of the plate in the first place
+
+requires("1.35b");
+  if (bitDepth!=24)
+     exit("This macro requires an RGB image");
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Choice of color for intensity measurements
+
+color=newArray("Red Values (RGB)", "Green Values (RGB)", "Blue Values (RGB)", "Gray Values");
+
+Dialog.create("Measurements");
+
+Dialog.addChoice("Channel:", color);
+
+Dialog.show();
+
+color = Dialog.getChoice();
+
+if (color== "Red Values (RGB)") 
+
+	setRGBWeights(1, 0, 0);
+
+     else if (color== "Green Values (RGB)") 
+
+      	setRGBWeights(0, 1, 0);
+
+     else if (color== "Blue Values (RGB)")
+
+        setRGBWeights(0, 0, 1);
+
+     else setRGBWeights(1/3, 1/3, 1/3);
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Setting default grid parameter values
+
+nc=12; nr=8; xo=516; yo=786; xf=4134; yf=3054; csize=40;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Refining grid parameter values
+
+do {
+
+
+run("Remove Overlay");
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Entering grid parameter values
+
+Dialog.create("Grid Parameters");
+ 
+Dialog.addNumber("# of Columns Plate Has (<= 12):", nc);
+
+Dialog.addNumber("# of Rows Plate Has (<= 8):", nr);
+
+Dialog.addNumber("Top Left Well, A1, X Coordinate of Center of Well:", xo);
+
+Dialog.addNumber("Top Left Well, A1, Y Coordinate of Center of Well:", yo);
+
+Dialog.addNumber("Bottom Right Well, H12, X Coordinate of Center of Well:", xf);
+
+Dialog.addNumber("Bottom Right Well, H12, Y Coordinate of Center of Well:", yf);
+
+Dialog.addNumber("Size of Circle Measurement (Diameter in pixels):", csize);
+
+Dialog.show();
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Checking grid parameter values
+
+nc=Dialog.getNumber();
+
+if (nc > 12)
+	exit ("You cannot measure more than 12 columns. Please ensure that number of columns is <= 12");
+if (nc < 1)
+	exit ("You must have at least one column be read. Ensure number of columns is >= 1");
+
+nr=Dialog.getNumber();
+
+if (nr > 8)
+	exit ("You cannot measure more than 8 rows. Please ensure that number of rows is <= 8");
+if (nr < 1)
+	exit ("You must have at least one row be read. Ensure number of rows is >= 1");
+
+xo=Dialog.getNumber();
+
+if (xo < 0)
+	exit ("X coordinate of A1 center can't be negative value");
+
+yo=Dialog.getNumber();
+
+if (yo < 0)
+	exit ("Y coordinate of A1 center can't be negative value");
+
+xf=Dialog.getNumber();
+
+if (xf < xo)
+	exit ("X coordinate here must be greater than A1 value");
+
+yf=Dialog.getNumber();
+
+if (yf < yo)
+	exit ("Y coordinate here must be greater than A1 value");
+
+csize=Dialog.getNumber();
+
+if (csize < 1)
+	exit ("Diameter of circle measurement must be >= 1");
+
+csepx=(xf - xo)/11; 
+
+csepy=(yf - yo)/7;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Building the grid
+
+x=xo-csize/2;
+y=yo-csize/2;
+csmallsize=csize/sqrt(3);
+
+for (i=0; i<nr; i++) {
+ 
+	for (j=0; j<nc; j++) {
+
+makeOval(x+(j-0.5)*csepx, y+(i-0.5)*csepy, csmallsize, csmallsize);
+run("Measure");
+
+makeOval(x+(j-0.5)*csepx, y+(i+0.5)*csepy, csmallsize, csmallsize);
+run("Measure");
+
+makeOval(x+(j+0.5)*csepx, y+(i-0.5)*csepy, csmallsize, csmallsize);
+run("Measure");
+
+makeOval(x+(j+0.5)*csepx, y+(i+0.5)*csepy, csmallsize, csmallsize);
+run("Measure");
+
+makeOval(x+j*csepx, y+i*csepy, csize, csize);
+run("Measure");
+
+	} 
+ }  
+
+run("Clear Results");
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Checking the grid
+
+grid=newArray("Yes", "No");
+
+Dialog.create("Grid check-up");
+
+Dialog.addChoice("Does the grid fit the position of each well?", grid);
+ 
+Dialog.show();
+
+grid = Dialog.getChoice();
+
+} while (grid== "No");
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Doing measurements on the chosen grid
+
+for (i=0; i<nr; i++) {
+
+	row=substring("ABCDEFGH",i,i+1);
+	
+	for (j=0; j<nc; j++) {
+
+makeOval(x+(j-0.5)*csepx, y+(i-0.5)*csepy, csmallsize, csmallsize);
+getStatistics (area, mean);
+b1=mean;
+//print (area);
+//print (b1);
+
+makeOval(x+(j-0.5)*csepx, y+(i+0.5)*csepy, csmallsize, csmallsize);
+getStatistics (area, mean);
+b2=mean;
+//print (area);
+//print (b2);
+
+makeOval(x+(j+0.5)*csepx, y+(i-0.5)*csepy, csmallsize, csmallsize);
+getStatistics (area, mean);
+b3=mean;
+//print (area);
+//print (b3);
+
+makeOval(x+(j+0.5)*csepx, y+(i+0.5)*csepy, csmallsize, csmallsize);
+getStatistics (area, mean);
+b4=mean;
+//print (area);
+//print (b4);
+//print (0);
+
+b12min=minOf(b1,b2);
+b34min=minOf(b3,b4);
+b14min=minOf(b12min,b34min);
+//print (b14min);
+bav=((b1+b2+b3+b4)-b14min)/3;
+//print (bav);
+//print (0);
+
+makeOval(x+j*csepx, y+i*csepy, csize, csize);
+getStatistics (area, mean);
+intensity=mean;
+//print (intensity);
+//print (area);
+//print (0);
+
+ 	run("Measure");
+	
+ 	setResult("Row", nResults-1, row);
+
+ 	setResult("Column", nResults-1, j+1);
+
+ abuncorr=-(log(intensity/255)/log(10));
+ 	setResult("Auncorr", nResults-1, abuncorr);
+
+ ablank=-(log(bav/255)/log(10));
+ 	setResult("Ablank", nResults-1, ablank);
+
+ abcorr=abuncorr-ablank;	
+ 	setResult("Acorr", nResults-1, abcorr);
+
+ updateResults();
+
+ 	} 
+  }  
+
+//////////////////////////////////////////////////////////////////////////////////////////
